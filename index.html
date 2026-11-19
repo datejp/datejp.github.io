@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Hi, I'm Juan Pablo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,500..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#FBF6EE; --card:#FFFFFF; --field:#FFFDF9; --ink:#2E2A26; --muted:#6B6259; --line:#E6DBCD;
+    --accent:#C2553A; --accent-soft:#F6DDD1; --blush:#F9EBE1; --sage:#E6EDDF;
+    --shadow:0 12px 32px rgba(86, 62, 42, .10);
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  [hidden] { display:none !important; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--ink); font-family:'DM Sans', 'Segoe UI', Arial, sans-serif; font-size:17px; line-height:1.6; -webkit-text-size-adjust:100%; overflow-x:hidden; }
+  img { display:block; max-width:100%; }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 22px; }
+  section { padding:48px 0; }
+  h1, h2, h3, .serif { font-family:Fraunces, Georgia, 'Times New Roman', serif; font-weight:600; line-height:1.12; letter-spacing:-.01em; }
+  h2 { font-size:clamp(30px, 8vw, 44px); margin-bottom:14px; }
+  h3 { font-size:23px; margin-bottom:6px; }
+  p { margin-bottom:14px; }
+  p:last-child { margin-bottom:0; }
+  a { color:var(--accent); }
+  .label { color:var(--accent); font-weight:700; font-size:15px; margin-bottom:6px; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; font:700 17px/1.2 'DM Sans', 'Segoe UI', Arial, sans-serif; text-decoration:none; text-align:center; border:1.5px solid var(--accent); border-radius:999px; padding:13px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(194, 85, 58, .22); transition:transform .15s ease; }
+  .btn:hover { transform:translateY(-1px); }
+  .btn.ghost { background:transparent; color:var(--accent); box-shadow:none; }
+  .btn.small { font-size:15px; padding:9px 18px; white-space:nowrap; }
+  :focus-visible { outline:3px solid rgba(194, 85, 58, .45); outline-offset:3px; }
+
+  /* ---------- Phone layout (default) ---------- */
+  .hero { padding:22px 0 30px; }
+  .hero-photo img { width:100%; aspect-ratio:1/1.05; object-fit:cover; object-position:50% 85%; border-radius:28px; box-shadow:var(--shadow); }
+  .hero-text { padding-top:24px; }
+  .hello { font-size:20px; color:var(--muted); margin-bottom:2px; }
+  h1 { font-size:clamp(52px, 16vw, 76px); margin-bottom:14px; }
+  .lead { font-size:19px; max-width:30em; }
+  .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
+
+  .why .prose { max-width:36em; }
+
+  .want { background:var(--blush); }
+  .want .big { font-size:clamp(34px, 9.5vw, 56px); margin-bottom:12px; }
+  .want .sub { font-size:19px; color:#4A423B; max-width:30em; }
+
+  .stats { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-bottom:20px; }
+  .stat { background:var(--card); border-radius:18px; padding:14px 10px; box-shadow:0 4px 14px rgba(86, 62, 42, .06); }
+  .stat .n { font-size:clamp(28px, 8.6vw, 44px); color:var(--accent); line-height:1.1; }
+  .stat .c { font-size:14px; color:var(--muted); line-height:1.35; margin-top:4px; }
+  .list { list-style:none; }
+  .list li { display:flex; align-items:center; gap:12px; font-size:19px; padding:10px 0; border-bottom:1px solid var(--line); }
+  .list li:last-child { border-bottom:0; }
+  .list li::before { content:""; width:9px; height:9px; border-radius:50%; background:var(--accent); flex:none; }
+  .flag { display:inline-block; width:26px; height:18px; border-radius:3px; flex:none; background:linear-gradient(#C8102E 0 25%, #F6C400 25% 75%, #C8102E 75% 100%); }
+
+  .life { background:var(--card); }
+  .photos { display:grid; grid-template-columns:1fr 1fr; gap:20px 14px; }
+  .ph .img { border-radius:22px; background-size:cover; background-repeat:no-repeat; background-position:50% 50%; }
+  .ph figcaption { font-size:16px; color:var(--muted); line-height:1.35; margin-top:8px; padding-left:4px; }
+  .ph-view, .ph-volley { grid-column:1 / -1; }
+  .ph-view .img { aspect-ratio:4/3; background-image:url(view.jpg); background-position:35% 50%; }
+  .ph-volley .img { aspect-ratio:4/4.6; background-image:url(volley.jpg); background-position:50% 0; }
+  .ph-night .img { aspect-ratio:1/1; background-image:url(night.jpg); }
+  .ph-cooking .img { aspect-ratio:1/1; background-image:url(cooking.jpg); }
+  .also { margin-top:22px; font-size:18px; }
+
+  .games { background:var(--sage); }
+  .game-grid { display:grid; gap:20px; margin-top:20px; }
+  .game { background:var(--card); border-radius:24px; padding:20px; box-shadow:var(--shadow); }
+  .game .hint { color:var(--muted); font-size:15.5px; margin-bottom:14px; }
+  #maze { display:block; width:100%; max-width:380px; aspect-ratio:1/1; margin:0 auto; background:var(--field); border-radius:16px; touch-action:none; cursor:pointer; }
+  .puzzle { display:grid; grid-template-columns:repeat(3, 1fr); gap:5px; width:100%; max-width:380px; aspect-ratio:1/1; margin:0 auto; border-radius:16px; overflow:hidden; transition:gap .3s ease; }
+  .piece { border:0; padding:0; background:url(cafe.jpg) 0 0 / 300% 300% no-repeat; border-radius:8px; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, border-radius .3s ease; }
+  .piece.picked { transform:scale(.92); box-shadow:0 0 0 3px var(--accent); }
+  .puzzle.done { gap:0; }
+  .puzzle.done .piece { border-radius:0; cursor:default; }
+  .game-foot { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px; font-size:15.5px; color:var(--muted); }
+  .win { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px 12px; background:var(--accent-soft); border-radius:14px; padding:12px 14px; margin-top:14px; font-weight:700; }
+
+  .terms { margin:4px 0 22px; }
+  .terms div { padding:12px 0; border-bottom:1px solid var(--line); }
+  .terms dt { color:var(--accent); font-weight:700; font-size:15px; }
+  .terms dd { font-size:24px; }
+  .polaroid { width:70%; max-width:300px; margin:8px auto 32px; background:#fff; padding:10px 10px 14px; border-radius:6px; transform:rotate(2deg); box-shadow:var(--shadow); }
+  .polaroid img { width:100%; border-radius:3px; }
+
+  .formcard { background:var(--card); border-radius:26px; padding:24px 20px; box-shadow:var(--shadow); }
+  label, .q { display:block; font-size:15px; font-weight:700; margin:18px 0 6px; }
+  form > label:first-child { margin-top:0; }
+  .req { color:var(--accent); }
+  input[type=text], input[type=number], textarea { width:100%; font:400 17px/1.4 'DM Sans', 'Segoe UI', Arial, sans-serif; color:var(--ink); background:var(--field); border:1.5px solid var(--line); border-radius:14px; padding:12px 14px; }
+  textarea { min-height:96px; resize:vertical; }
+  input[type=text]:focus, input[type=number]:focus, textarea:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 4px rgba(194, 85, 58, .15); }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chips label { margin:0; font-weight:500; }
+  .chips input { position:absolute; opacity:0; pointer-events:none; }
+  .chips span { display:inline-block; border:1.5px solid var(--line); background:var(--field); border-radius:999px; padding:9px 15px; font-size:16px; cursor:pointer; }
+  .chips input:checked + span { background:var(--accent-soft); border-color:var(--accent); }
+  .chips input:focus-visible + span { outline:3px solid rgba(194, 85, 58, .45); outline-offset:2px; }
+  .reveal { display:none; margin-top:14px; }
+  .reveal.on { display:block; }
+  .reveal label { margin:0 0 6px; }
+  .hp { position:absolute; left:-9999px; }
+  form .btn { display:block; width:100%; margin-top:26px; font-size:19px; padding:16px 20px; }
+  .small { text-align:center; font-size:14px; color:var(--muted); margin-top:14px; }
+  .thanks { display:none; }
+  .thanks h3 { font-size:30px; margin-bottom:8px; }
+  .dm { margin-top:20px; padding:16px 18px; background:var(--blush); border-radius:18px; }
+  .dm a { font-weight:700; }
+  footer { color:var(--muted); font-size:13.5px; padding:26px 0 34px; }
+
+  /* ---------- Computer layout ---------- */
+  @media (min-width: 860px) {
+    body { font-size:18px; }
+    .wrap { padding:0 40px; }
+    section { padding:84px 0; }
+    h2 { font-size:48px; margin-bottom:20px; }
+
+    .hero { padding:56px 0 72px; }
+    .hero-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:64px; align-items:center; }
+    .hero-text { order:1; padding-top:0; }
+    .hero-photo { order:2; }
+    .hero-photo img { aspect-ratio:4/5; object-position:50% 60%; max-height:640px; border-radius:36px; }
+    .hello { font-size:24px; }
+    h1 { font-size:clamp(76px, 8vw, 104px); margin-bottom:18px; }
+    .lead { font-size:21px; }
+    .actions { margin-top:28px; }
+
+    .why .wrap { display:grid; grid-template-columns:1fr 1.4fr; gap:56px; align-items:start; }
+    .why .prose { font-size:20px; padding-top:6px; }
+
+    .want { text-align:center; }
+    .want .big { font-size:64px; }
+    .want .sub { font-size:22px; margin:0 auto; }
+
+    .facts-body { display:grid; grid-template-columns:1.2fr 1fr; gap:56px; align-items:center; }
+    .stats { gap:18px; margin-bottom:0; }
+    .stat { padding:26px 22px; border-radius:22px; }
+    .stat .n { font-size:56px; }
+    .stat .c { font-size:16px; }
+    .list li { font-size:21px; padding:13px 0; }
+
+    .photos { grid-template-columns:repeat(3, 1fr); gap:28px; }
+    .ph { display:flex; flex-direction:column; }
+    .ph-volley { grid-column:1; grid-row:1 / span 2; }
+    .ph-volley .img { aspect-ratio:auto; flex:1; min-height:0; }
+    .ph-view { grid-column:2 / span 2; grid-row:1; }
+    .ph-view .img { aspect-ratio:2/1; background-position:50% 40%; }
+    .ph-night { grid-column:2; grid-row:2; }
+    .ph-cooking { grid-column:3; grid-row:2; }
+    .ph-night .img, .ph-cooking .img { aspect-ratio:5/4; }
+    .also { font-size:20px; margin-top:30px; }
+
+    .game-grid { grid-template-columns:1fr 1fr; gap:28px; margin-top:28px; }
+    .game { padding:28px; }
+
+    .apply-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:start; }
+    .terms dd { font-size:28px; }
+    .polaroid { width:64%; margin:30px 0 0 6%; }
+    .formcard { padding:34px 32px; }
+    footer { font-size:14px; padding:30px 0 44px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .btn, .piece, .puzzle { transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-photo"><img src="hero.jpg" alt="Juan Pablo smiling by a river, wearing a green shirt"></div>
+    <div class="hero-text">
+      <p class="hello">Hi, I'm</p>
+      <h1>Juan Pablo</h1>
+      <p class="lead">I'm 23 and I live in Vancouver. Yes, you got here from an ad. The ad is real and so am I.</p>
+      <div class="actions">
+        <a class="btn" href="#apply">Say hi</a>
+        <a class="btn ghost" href="#games">Play a game first</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="why">
+  <div class="wrap">
+    <h2>Why an ad?</h2>
+    <div class="prose">
+      <p>I'm tired of dating apps. I hate scrolling through people without really knowing much about them, and it feels impossible to filter that way.</p>
+      <p>So I made an ad. It cost less than Hinge premium, too.</p>
+      <p>Everything about me is on this page. If you like what you see, there's a short form at the bottom, or you can just message me on Instagram.</p>
+    </div>
+  </div>
+</section>
+
+<section class="want">
+  <div class="wrap">
+    <div class="label">What I'm looking for</div>
+    <div class="serif big">Someone to do life with.</div>
+    <p class="sub">Try the new place, book the trip, learn the thing, and laugh when it goes wrong.</p>
+  </div>
+</section>
+
+<section class="facts">
+  <div class="wrap">
+    <h2>A few facts</h2>
+    <div class="facts-body">
+      <div class="stats">
+        <div class="stat"><div class="serif n">23</div><div class="c">years old</div></div>
+        <div class="stat"><div class="serif n">5'9"</div><div class="c">Not rounding up.</div></div>
+        <div class="stat"><div class="serif n">2</div><div class="c">languages: English and Spanish</div></div>
+      </div>
+      <ul class="list">
+        <li>Grad student</li>
+        <li>From Granada, Spain <span class="flag"></span></li>
+        <li>Living in Vancouver</li>
+        <li>Looking for a girlfriend</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="life">
+  <div class="wrap">
+    <h2>A bit of my life</h2>
+    <div class="photos">
+      <figure class="ph ph-view"><div class="img" role="img" aria-label="Juan Pablo at a viewpoint over a beach and the city skyline"></div><figcaption>Imported from Granada, Spain</figcaption></figure>
+      <figure class="ph ph-volley"><div class="img" role="img" aria-label="Juan Pablo jumping for the ball at a beach volleyball net"></div><figcaption>I play beach volleyball</figcaption></figure>
+      <figure class="ph ph-night"><div class="img" role="img" aria-label="Juan Pablo out at night"></div><figcaption>Up for a night out</figcaption></figure>
+      <figure class="ph ph-cooking"><div class="img" role="img" aria-label="Juan Pablo cooking with friends"></div><figcaption>I cook ambitiously</figcaption></figure>
+    </div>
+    <p class="also">I also bake croissants, go bouldering and like a three-hour lunch.</p>
+  </div>
+</section>
+
+<section class="games" id="games">
+  <div class="wrap">
+    <h2>Two quick games</h2>
+    <p>Not ready for the form yet? Play first.</p>
+    <div class="game-grid">
+      <div class="game">
+        <h3>Find your way to me</h3>
+        <p class="hint">Drag the heart through the maze with your finger or your mouse. Arrow keys work too.</p>
+        <canvas id="maze" tabindex="0" role="application" aria-label="Maze game. Use the arrow keys to move the heart to the photo in the bottom right corner."></canvas>
+        <div class="win" id="maze-msg" hidden><span>You found me.</span><a class="btn small" href="#apply">Now say hi</a></div>
+        <div class="game-foot"><span>A new maze every time.</span><button class="btn ghost small" type="button" id="maze-new">New maze</button></div>
+      </div>
+      <div class="game">
+        <h3>Put me back together</h3>
+        <p class="hint">Tap two pieces to swap them.</p>
+        <div class="puzzle" id="puzzle"></div>
+        <div class="win" id="puzzle-msg" hidden><span>Back in one piece. Thank you.</span><a class="btn small" href="#apply">Say hi</a></div>
+        <div class="game-foot"><span>Swaps: <span id="puzzle-moves">0</span></span><button class="btn ghost small" type="button" id="puzzle-new">Shuffle</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="apply" id="apply">
+  <div class="wrap apply-grid">
+    <div class="pitch">
+      <h2>Applications are open</h2>
+      <dl class="terms">
+        <div><dt>The role</dt><dd class="serif">Long-term. No internships.</dd></div>
+        <div><dt>Perks</dt><dd class="serif">Homemade baked goods, like croissants.</dd></div>
+      </dl>
+      <div class="polaroid"><img src="cafe.jpg" alt="Juan Pablo smiling at a café table"></div>
+    </div>
+
+    <div class="formcol">
+      <div class="formcard">
+        <iframe name="sink" id="sink" title="form target" style="display:none"></iframe>
+        <form id="form" method="POST" target="sink"
+              action="https://docs.google.com/forms/d/e/1FAIpQLSd_0Jxpd4-Z9y6PFNK_1x1p0jMokhszrd9iCeOoLEC6rzgpjQ/formResponse">
+          <label for="name">First name <span class="req">*</span></label>
+          <input id="name" type="text" name="entry.837688689" required maxlength="60" autocomplete="given-name">
+
+          <label for="age">Age <span class="req">*</span></label>
+          <input id="age" type="number" name="entry.1123992539" required min="18" max="99" inputmode="numeric">
+
+          <label for="ig">Your Instagram handle, so I can reply <span class="req">*</span></label>
+          <input id="ig" type="text" name="entry.1498150995" required maxlength="60" placeholder="@" autocapitalize="none" autocomplete="off">
+
+          <label for="why">What made you fill this out?</label>
+          <textarea id="why" name="entry.695421744" maxlength="1000"></textarea>
+
+          <div class="q">Pick a first date</div>
+          <div class="chips">
+            <label><input type="radio" name="entry.1170951730" value="Coffee and a walk"><span>Coffee and a walk</span></label>
+            <label><input type="radio" name="entry.1170951730" value="Drinks"><span>Drinks</span></label>
+            <label><input type="radio" name="entry.1170951730" value="Brunch"><span>Brunch</span></label>
+            <label><input type="radio" name="entry.1170951730" value="Something active"><span>Something active</span></label>
+            <label><input type="radio" name="entry.1170951730" value="Cooking dinner together"><span>Cooking dinner together</span></label>
+            <label><input type="radio" name="entry.1170951730" value="Surprise me"><span>Surprise me</span></label>
+          </div>
+          <div class="reveal" id="surprise">
+            <label for="idea">Got an idea in mind? Write it here (optional)</label>
+            <input id="idea" type="text" name="entry.1593039500" maxlength="200" disabled>
+          </div>
+
+          <label for="else">Anything else I should know?</label>
+          <textarea id="else" name="entry.2055381886" maxlength="1000"></textarea>
+
+          <input class="hp" type="text" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn" type="submit">Send application</button>
+          <div class="small">Takes about a minute. Your answers go only to me.</div>
+        </form>
+        <div class="thanks" id="thanks">
+          <h3>Got it, thank you.</h3>
+          <p>If we seem like a match, I'll message you on Instagram from <a href="https://www.instagram.com/datejp_/">@datejp_</a>.</p>
+        </div>
+      </div>
+      <p class="dm">Not a form person? Message me on Instagram instead: <a href="https://www.instagram.com/datejp_/">@datejp_</a></p>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">This is a personal page, not a company. It only collects what you type into the form.</div></footer>
+
+<script>
+  // ---------- Application form ----------
+  (function () {
+    var form = document.getElementById('form'), sink = document.getElementById('sink'), sent = false;
+    function done() { form.style.display = 'none'; document.getElementById('thanks').style.display = 'block'; }
+    form.addEventListener('submit', function (e) {
+      if (document.getElementById('website').value) { e.preventDefault(); done(); return; }
+      sent = true;
+      setTimeout(done, 2500);
+    });
+    sink.addEventListener('load', function () { if (sent) done(); });
+
+    // The idea box only shows, and is only sent, while "Surprise me" is picked.
+    var box = document.getElementById('surprise'), idea = document.getElementById('idea');
+    function sync() {
+      var picked = form.querySelector('input[name="entry.1170951730"]:checked');
+      var on = !!picked && picked.value === 'Surprise me';
+      box.classList.toggle('on', on);
+      idea.disabled = !on;
+    }
+    form.addEventListener('change', sync);
+    window.addEventListener('pageshow', sync);
+  })();
+
+  // ---------- Maze: drag the heart to the photo ----------
+  (function () {
+    var canvas = document.getElementById('maze'), msg = document.getElementById('maze-msg');
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var N = 8, PAD = 3;
+    var cells, pos, trail, won, cell = 40, dragging = false;
+    var face = new Image();
+    face.onload = function () { draw(); };
+    face.src = 'cafe.jpg';
+    // Each cell holds a bitmask of its open sides. A direction is [dx, dy, this side, the neighbour's side].
+    var DIRS = [[0, -1, 1, 4], [1, 0, 2, 8], [0, 1, 4, 1], [-1, 0, 8, 2]];
+
+    function carve() {
+      var x, y, i;
+      cells = [];
+      for (y = 0; y < N; y++) { cells.push([]); for (x = 0; x < N; x++) cells[y].push(0); }
+      // Carve passages with a random depth-first walk, so there is exactly one route.
+      var seen = { '0,0': true }, stack = [[0, 0]];
+      while (stack.length) {
+        var c = stack[stack.length - 1], opts = [];
+        for (i = 0; i < 4; i++) {
+          var nx = c[0] + DIRS[i][0], ny = c[1] + DIRS[i][1];
+          if (nx >= 0 && ny >= 0 && nx < N && ny < N && !seen[nx + ',' + ny]) opts.push(DIRS[i]);
+        }
+        if (!opts.length) { stack.pop(); continue; }
+        var d = opts[Math.floor(Math.random() * opts.length)];
+        var tx = c[0] + d[0], ty = c[1] + d[1];
+        cells[c[1]][c[0]] |= d[2];
+        cells[ty][tx] |= d[3];
+        seen[tx + ',' + ty] = true;
+        stack.push([tx, ty]);
+      }
+    }
+
+    function build() {
+      var width = canvas.clientWidth || 320, tries = 0, steps;
+      // Fewer, bigger cells on small phones so a finger fits.
+      N = width < 270 ? 7 : 8;
+      cell = (width - 2 * PAD) / N;
+      // Redraw until the route is a quick one: between 2N and 4N steps.
+      do {
+        carve();
+        pos = [0, 0];
+        steps = pathTo(N - 1, N - 1, N * N).length;
+        tries++;
+      } while ((steps < 2 * N || steps > 4 * N) && tries < 60);
+      trail = [[0, 0]]; won = false; msg.hidden = true;
+      draw();
+    }
+
+    // Shortest open route from the heart to a nearby cell, or null when it is further than `limit` steps.
+    function pathTo(tx, ty, limit) {
+      var start = pos[0] + ',' + pos[1], prev = {}, depth = {}, queue = [[pos[0], pos[1]]];
+      prev[start] = null; depth[start] = 0;
+      while (queue.length) {
+        var c = queue.shift(), k = c[0] + ',' + c[1];
+        if (c[0] === tx && c[1] === ty) {
+          var out = [];
+          while (prev[k]) { out.unshift(c); c = prev[k]; k = c[0] + ',' + c[1]; }
+          return out;
+        }
+        if (depth[k] >= limit) continue;
+        for (var i = 0; i < 4; i++) {
+          if (!(cells[c[1]][c[0]] & DIRS[i][2])) continue;
+          var n = [c[0] + DIRS[i][0], c[1] + DIRS[i][1]], nk = n[0] + ',' + n[1];
+          if (!(nk in prev)) { prev[nk] = c; depth[nk] = depth[k] + 1; queue.push(n); }
+        }
+      }
+      return null;
+    }
+
+    function step(c) {
+      var back = trail.length > 1 ? trail[trail.length - 2] : null;
+      if (back && back[0] === c[0] && back[1] === c[1]) trail.pop(); else trail.push(c);
+      pos = c;
+      if (c[0] === N - 1 && c[1] === N - 1) { won = true; msg.hidden = false; }
+    }
+
+    function moveTo(tx, ty) {
+      if (won || tx < 0 || ty < 0 || tx >= N || ty >= N) return;
+      var route = pathTo(tx, ty, 3);
+      if (!route) return;
+      for (var i = 0; i < route.length && !won; i++) step(route[i]);
+      draw();
+    }
+
+    function cellAt(e) {
+      var r = canvas.getBoundingClientRect(), k = r.width / (N * cell + 2 * PAD);
+      return [Math.floor(((e.clientX - r.left) / k - PAD) / cell), Math.floor(((e.clientY - r.top) / k - PAD) / cell)];
+    }
+
+    function heart(cx, cy, s) {
+      ctx.beginPath();
+      ctx.moveTo(cx, cy + s * 0.45);
+      ctx.bezierCurveTo(cx - s * 0.95, cy - s * 0.1, cx - s * 0.45, cy - s * 0.8, cx, cy - s * 0.28);
+      ctx.bezierCurveTo(cx + s * 0.45, cy - s * 0.8, cx + s * 0.95, cy - s * 0.1, cx, cy + s * 0.45);
+      ctx.fill();
+    }
+
+    function draw() {
+      if (!cells) return;
+      var w = N * cell + 2 * PAD, x, y, i;
+      ctx.clearRect(0, 0, w, w);
+      ctx.save();
+      ctx.translate(PAD, PAD);
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+
+      // The route walked so far.
+      ctx.strokeStyle = 'rgba(194, 85, 58, .22)'; ctx.lineWidth = cell * 0.36;
+      ctx.beginPath();
+      for (i = 0; i < trail.length; i++) {
+        var px = (trail[i][0] + 0.5) * cell, py = (trail[i][1] + 0.5) * cell;
+        if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+      }
+      ctx.stroke();
+
+      // Walls.
+      ctx.strokeStyle = '#A3968A'; ctx.lineWidth = 3;
+      ctx.beginPath();
+      for (y = 0; y < N; y++) for (x = 0; x < N; x++) {
+        var m = cells[y][x];
+        if (!(m & 1)) { ctx.moveTo(x * cell, y * cell); ctx.lineTo((x + 1) * cell, y * cell); }
+        if (!(m & 8)) { ctx.moveTo(x * cell, y * cell); ctx.lineTo(x * cell, (y + 1) * cell); }
+        if (x === N - 1) { ctx.moveTo(N * cell, y * cell); ctx.lineTo(N * cell, (y + 1) * cell); }
+        if (y === N - 1) { ctx.moveTo(x * cell, N * cell); ctx.lineTo((x + 1) * cell, N * cell); }
+      }
+      ctx.stroke();
+
+      // The goal: a round photo in the last cell.
+      var gx = (N - 0.5) * cell, gy = (N - 0.5) * cell, gr = cell * 0.39;
+      ctx.save();
+      ctx.beginPath(); ctx.arc(gx, gy, gr, 0, Math.PI * 2); ctx.closePath();
+      ctx.fillStyle = '#F6DDD1'; ctx.fill();
+      if (face.complete && face.naturalWidth) {
+        ctx.clip();
+        var fw = face.naturalWidth, fh = face.naturalHeight, s = fw * 0.5;
+        ctx.drawImage(face, fw * 0.26, fh * 0.06, s, s, gx - gr, gy - gr, gr * 2, gr * 2);
+      }
+      ctx.restore();
+      ctx.strokeStyle = '#C2553A'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(gx, gy, gr, 0, Math.PI * 2); ctx.stroke();
+
+      // The heart.
+      ctx.fillStyle = '#C2553A';
+      if (won) heart(gx + gr * 0.75, gy - gr * 0.75, cell * 0.3);
+      else heart((pos[0] + 0.5) * cell, (pos[1] + 0.5) * cell + cell * 0.04, cell * 0.5);
+      ctx.restore();
+    }
+
+    function fit() {
+      var w = canvas.clientWidth || 320, dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(w * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cell = (w - 2 * PAD) / N;
+      draw();
+    }
+
+    canvas.addEventListener('pointerdown', function (e) {
+      dragging = true;
+      if (canvas.setPointerCapture) { try { canvas.setPointerCapture(e.pointerId); } catch (err) {} }
+      var c = cellAt(e); moveTo(c[0], c[1]);
+      e.preventDefault();
+    });
+    canvas.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var c = cellAt(e); moveTo(c[0], c[1]);
+    });
+    function stop() { dragging = false; }
+    canvas.addEventListener('pointerup', stop);
+    canvas.addEventListener('pointercancel', stop);
+    canvas.addEventListener('keydown', function (e) {
+      var i = { ArrowUp: 0, ArrowRight: 1, ArrowDown: 2, ArrowLeft: 3 }[e.key];
+      if (i === undefined) return;
+      e.preventDefault();
+      if (won || !(cells[pos[1]][pos[0]] & DIRS[i][2])) return;
+      step([pos[0] + DIRS[i][0], pos[1] + DIRS[i][1]]);
+      draw();
+    });
+    document.getElementById('maze-new').addEventListener('click', build);
+    if (window.ResizeObserver) new ResizeObserver(fit).observe(canvas); else window.addEventListener('resize', fit);
+    build();
+    fit();
+  })();
+
+  // ---------- Photo puzzle: tap two pieces to swap them ----------
+  (function () {
+    var box = document.getElementById('puzzle'), msg = document.getElementById('puzzle-msg'), count = document.getElementById('puzzle-moves');
+    if (!box) return;
+    var order = [], picked = null, moves = 0, solved = false, tiles = [];
+    for (var i = 0; i < 9; i++) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'piece'; b.setAttribute('data-slot', i);
+      box.appendChild(b); tiles.push(b);
+    }
+    function inPlace() { return order.every(function (p, slot) { return p === slot; }); }
+    function paint() {
+      tiles.forEach(function (b, slot) {
+        var p = order[slot];
+        b.style.backgroundPosition = (p % 3) * 50 + '% ' + Math.floor(p / 3) * 50 + '%';
+        b.classList.toggle('picked', picked === slot);
+        b.setAttribute('aria-label', 'Piece ' + (p + 1) + ', in spot ' + (slot + 1));
+      });
+      count.textContent = moves;
+    }
+    function shuffle() {
+      order = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+      do {
+        for (var i = 8; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = order[i]; order[i] = order[j]; order[j] = t; }
+      } while (inPlace());
+      picked = null; moves = 0; solved = false; msg.hidden = true; box.classList.remove('done');
+      paint();
+    }
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('.piece') : null;
+      if (!b || solved) return;
+      var slot = +b.getAttribute('data-slot');
+      if (picked === null) picked = slot;
+      else if (picked === slot) picked = null;
+      else {
+        var t = order[slot]; order[slot] = order[picked]; order[picked] = t;
+        picked = null; moves++;
+        if (inPlace()) { solved = true; msg.hidden = false; box.classList.add('done'); }
+      }
+      paint();
+    });
+    document.getElementById('puzzle-new').addEventListener('click', shuffle);
+    shuffle();
+  })();
+</script>
+</body>
+</html>
